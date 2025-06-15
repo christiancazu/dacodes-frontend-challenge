@@ -1,0 +1,11 @@
+{
+	"name": "@dacodes/game",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"build": "tsc -noEmit && vite build",
+		"dev": "concurrently \"vite preview -l silent\" \"vite build --watch\"",
+		"preview": "vite preview"
+	}
+}

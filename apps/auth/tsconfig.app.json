@@ -3,10 +3,13 @@
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     "target": "ES2020",
     "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "lib": [
+      "ES2020",
+      "DOM",
+      "DOM.Iterable"
+    ],
     "module": "ESNext",
     "skipLibCheck": true,
-
     /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
@@ -14,14 +17,38 @@
     "moduleDetection": "force",
     "noEmit": true,
     "jsx": "react-jsx",
-
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+    "paths": {
+      "@dacodes/root/*": [
+        "../root/src/*"
+      ],
+      "@dacodes/root/queryClient": [
+        "../root/src/config/query.client"
+      ],
+      "@dacodes/root/httpClient": [
+        "../root/src/config/http.client"
+      ],
+      "@dacodes/root/useNotify": [
+        "../root/src/hooks/useNotify"
+      ],
+      "@dacodes/directory/*": [
+        "../directory/src/*"
+      ],
+      "@dacodes/game/*": [
+        "../game/src/*"
+      ],
+      "@dacodes/profile/*": [
+        "../profile/src/*"
+      ],
+    }
   },
-  "include": ["src"]
+  "include": [
+    "src"
+  ]
 }

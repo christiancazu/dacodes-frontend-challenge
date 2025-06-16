@@ -12,16 +12,19 @@ export default defineConfig(({ mode }) => {
         name: "@dacodes/auth",
         filename: "auth.js",
         exposes: {
-          "./App": "./src/App.tsx",
+          "./App": "./src/App",
         },
-        shared: ["react", "react-dom"],
+        remotes: {
+          "@dacodes/root": `http://localhost:${env.VITE_ROOT_PORT}/assets/root.js`,
+        },
+        shared: ["@tanstack/react-query", "antd", "react", "react-dom"],
       }),
     ],
     build: {
       modulePreload: false,
       target: "esnext",
       minify: false,
-      cssCodeSplit: true,
+      cssCodeSplit: false,
     },
     server: {
       port: +env.VITE_AUTH_PORT || 7001,

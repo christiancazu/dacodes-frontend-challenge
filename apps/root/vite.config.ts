@@ -30,13 +30,14 @@ export default defineConfig(({ mode }) => {
           "@dacodes/profile": `http://localhost:${VITE_PROFILE_PORT}/assets/profile.js`,
         },
         exposes: {
-          "./Theme": "./src/Theme",
+          "./AppProvider": "./src/components/AppProvider",
           "./queryClient": "./src/config/query.client",
           "./httpClient": "./src/config/http.client",
           "./useNotify": "./src/hooks/useNotify",
         },
         shared: [
           "axios",
+          "@ant-design/icons",
           "@tanstack/react-query",
           "antd",
           "react",

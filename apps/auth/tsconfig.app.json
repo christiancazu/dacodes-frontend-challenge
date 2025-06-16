@@ -1,4 +1,5 @@
 {
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     "target": "ES2020",
@@ -23,30 +24,7 @@
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true,
-    "paths": {
-      "@dacodes/root/*": [
-        "../root/src/*"
-      ],
-      "@dacodes/root/queryClient": [
-        "../root/src/config/query.client"
-      ],
-      "@dacodes/root/httpClient": [
-        "../root/src/config/http.client"
-      ],
-      "@dacodes/root/useNotify": [
-        "../root/src/hooks/useNotify"
-      ],
-      "@dacodes/directory/*": [
-        "../directory/src/*"
-      ],
-      "@dacodes/game/*": [
-        "../game/src/*"
-      ],
-      "@dacodes/profile/*": [
-        "../profile/src/*"
-      ],
-    }
+    "noUncheckedSideEffectImports": true
   },
   "include": [
     "src"

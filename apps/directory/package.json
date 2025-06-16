@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@dacodes/lib": "workspace:*"
+    "@dacodes/lib": "workspace:*",
+    "react-infinite-scroll-component": "^6.1.0"
   }
 }

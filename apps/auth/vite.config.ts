@@ -17,7 +17,13 @@ export default defineConfig(({ mode }) => {
         remotes: {
           "@dacodes/root": `http://localhost:${env.VITE_ROOT_PORT}/assets/root.js`,
         },
-        shared: ["@tanstack/react-query", "antd", "react", "react-dom"],
+        shared: [
+          "@ant-design/icons",
+          "@tanstack/react-query",
+          "antd",
+          "react",
+          "react-dom",
+        ],
       }),
     ],
     build: {

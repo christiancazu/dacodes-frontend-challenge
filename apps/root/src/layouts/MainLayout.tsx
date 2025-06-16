@@ -1,12 +1,14 @@
 import { type User, queryKeys } from '@dacodes/lib'
-import { useSuspenseQuery } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import { Avatar, Flex, Image, Layout, Space } from 'antd'
 import { Content, Header } from 'antd/es/layout/layout'
 import { Outlet } from 'react-router'
+import queryClient from '../config/query.client'
 
 export default function MainLayout(): React.ReactNode {
-	const { data } = useSuspenseQuery<User>({
+	const { data } = useQuery<User>({
 		queryKey: [queryKeys.auth],
+		queryFn: () => queryClient.getQueryData<User>([queryKeys.auth])!,
 	})
 
 	return (
@@ -22,10 +24,12 @@ export default function MainLayout(): React.ReactNode {
 						/>
 					</Flex>
 
-					<Space>
-						<Avatar src={data.image} alt={data.username} />
-						{data.firstName}
-					</Space>
+					{data && (
+						<Space>
+							<Avatar src={data.image} alt={data.username} />
+							{data.firstName}
+						</Space>
+					)}
 				</Flex>
 			</Header>
 			<Content>

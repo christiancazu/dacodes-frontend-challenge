@@ -7,21 +7,5 @@
     {
       "path": "./tsconfig.node.json"
     }
-  ],
-  "compilerOptions": {
-    "paths": {
-      "@dacodes/root/*": [
-        "../root/src/*"
-      ],
-      "@dacodes/directory/*": [
-        "../directory/src/*"
-      ],
-      "@dacodes/game/*": [
-        "../game/src/*"
-      ],
-      "@dacodes/profile/*": [
-        "../profile/src/*"
-      ],
-    }
-  }
+  ]
 }

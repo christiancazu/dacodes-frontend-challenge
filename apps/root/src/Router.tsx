@@ -10,6 +10,7 @@ import MainLayout from './layouts/MainLayout'
 
 import AuthView from '@dacodes/auth/App'
 import DirectoryView from '@dacodes/directory/App'
+import GameView from '@dacodes/game/App'
 import { type User, queryKeys } from '@dacodes/lib'
 import { useQuery } from '@tanstack/react-query'
 import queryClient from './config/query.client'
@@ -22,6 +23,7 @@ function AuthenticatedRoutes(): React.ReactNode {
 
 	const { data } = useQuery<User>({
 		queryKey: [queryKeys.auth],
+		queryFn: () => queryClient.getQueryData<User>([queryKeys.auth])!,
 	})
 
 	if (data && location.pathname === '/login') {
@@ -29,7 +31,9 @@ function AuthenticatedRoutes(): React.ReactNode {
 	}
 
 	if (!data && location.pathname !== '/login') {
-		queryClient.resetQueries()
+		queryClient.removeQueries({
+			queryKey: [queryKeys.users],
+		})
 		return <Navigate to="/login" replace />
 	}
 
@@ -43,7 +47,7 @@ const router = createBrowserRouter([
 		children: [
 			{
 				index: true,
-				element: <Navigate to="/login" replace />,
+				element: <Navigate to="/directory" replace />,
 			},
 			{
 				path: 'login',
@@ -52,6 +56,10 @@ const router = createBrowserRouter([
 			{
 				path: 'directory',
 				element: <DirectoryView />,
+			},
+			{
+				path: 'game',
+				element: <GameView />,
 			},
 		],
 	},

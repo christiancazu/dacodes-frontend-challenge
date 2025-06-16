@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@dacodes/root/AppProvider": [
+        "./apps/root/src/components/AppProvider"
+      ],
+      "@dacodes/root/queryClient": [
+        "./apps/root/src/config/query.client"
+      ],
+      "@dacodes/root/httpClient": [
+        "./apps/root/src/config/http.client"
+      ],
+      "@dacodes/root/useNotify": [
+        "./apps/root/src/hooks/useNotify"
+      ],
+      "@dacodes/auth/App": [
+        "./apps/auth/src/App"
+      ],
+      "@dacodes/directory/App": [
+        "./apps/directory/src/App"
+      ],
+      "@dacodes/game/App": [
+        "./apps/game/src/App"
+      ],
+    }
+  }
+}

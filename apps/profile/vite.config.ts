@@ -14,7 +14,13 @@ export default defineConfig(({ mode }) => {
         exposes: {
           "./App": "./src/App.tsx",
         },
-        shared: ["react", "react-dom"],
+        shared: [
+          "@ant-design/icons",
+          "@tanstack/react-query",
+          "antd",
+          "react",
+          "react-dom",
+        ],
       }),
     ],
     build: {

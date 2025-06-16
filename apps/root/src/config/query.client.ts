@@ -20,17 +20,17 @@ export const persister = createSyncStoragePersister({
 persistQueryClient({
   queryClient,
   persister,
-  dehydrateOptions: {
-    shouldDehydrateQuery: (query) => {
-      const queryIsReadyForPersistance = query.state.status === "success";
-      if (queryIsReadyForPersistance) {
-        const { queryKey } = query;
-        const excludeFromPersisting = queryKey.includes("notify");
-        return !excludeFromPersisting;
-      }
-      return queryIsReadyForPersistance;
-    },
-  },
+  // dehydrateOptions: {
+  // shouldDehydrateQuery: (query) => {
+  //   const queryIsReadyForPersistance = query.state.status === "success";
+  //   if (queryIsReadyForPersistance) {
+  //     const { queryKey } = query;
+  //     const excludeFromPersisting = queryKey.includes("notify");
+  //     return !excludeFromPersisting;
+  //   }
+  //   return queryIsReadyForPersistance;
+  // },
+  // },
 });
 
 export default queryClient;

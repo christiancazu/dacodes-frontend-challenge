@@ -1,3 +1,10 @@
+import AppProvider from '@dacodes/root/AppProvider'
+import DirectoryView from './views/DirectoryView'
+
 export default function App(): React.ReactNode {
-	return <>Directory</>
+	return (
+		<AppProvider>
+			<DirectoryView />
+		</AppProvider>
+	)
 }

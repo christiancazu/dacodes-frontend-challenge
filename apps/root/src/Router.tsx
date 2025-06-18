@@ -1,5 +1,5 @@
 import { Spin } from 'antd'
-import { Suspense } from 'react'
+import { Suspense, lazy } from 'react'
 import {
 	Navigate,
 	RouterProvider,
@@ -8,10 +8,11 @@ import {
 } from 'react-router'
 import MainLayout from './layouts/MainLayout'
 
-import AuthView from '@dacodes/auth/App'
-import DirectoryView from '@dacodes/directory/App'
-import GameView from '@dacodes/game/App'
-import ProfileView from '@dacodes/profile/App'
+const AuthView = lazy(() => import('@dacodes/auth/App'))
+const DirectoryView = lazy(() => import('@dacodes/directory/App'))
+const GameView = lazy(() => import('@dacodes/game/App'))
+const ProfileView = lazy(() => import('@dacodes/profile/App'))
+const NotFoundView = lazy(() => import('../views/NotFoundView'))
 
 import { type User, queryKeys } from '@dacodes/lib'
 import { useQuery } from '@tanstack/react-query'
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
 			{
 				path: 'profiles/:id',
 				element: <ProfileView />,
+			},
+			{
+				path: '*',
+				element: <NotFoundView />,
 			},
 		],
 	},

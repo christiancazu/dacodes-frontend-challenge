@@ -37,6 +37,7 @@ export default function FlipGameSelection({
 				<Flex
 					justify="space-evenly"
 					wrap
+					gap={16}
 					className="mt-8 w-full selection-images"
 				>
 					<img

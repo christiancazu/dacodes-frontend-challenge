@@ -1,3 +1,5 @@
+import { Company } from "../profile";
+
 export enum UserRole {
   admin = "admin",
   moderator = "moderator",
@@ -14,10 +16,4 @@ export interface User {
   image: string;
   company: Company;
   role: UserRole;
-}
-
-export interface Company {
-  department: string;
-  name: string;
-  title: string;
 }

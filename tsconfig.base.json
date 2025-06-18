@@ -22,6 +22,9 @@
       "@dacodes/game/App": [
         "./apps/game/src/App"
       ],
+      "@dacodes/profile/App": [
+        "./apps/profile/src/App"
+      ],
     }
   }
 }

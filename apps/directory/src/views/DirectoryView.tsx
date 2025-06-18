@@ -15,6 +15,8 @@ import { useState } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { useUsers } from '../hooks/useUsers'
 
+import classes from './DirectoryView.module.scss'
+
 const columns: TableColumnsType<User> = [
 	{
 		title: 'Nombre',
@@ -24,6 +26,7 @@ const columns: TableColumnsType<User> = [
 				sensitivity: 'base',
 			}),
 		render: (_, user) => <>{user.firstName}</>,
+		fixed: 'left',
 	},
 	{
 		title: 'Apellido',
@@ -66,13 +69,17 @@ export default function DirectoryView(): React.ReactNode {
 		queryClient.setQueryData([queryKeys.navigate], '/game')
 	}
 
+	const handleViewProfile = (id: number) => {
+		queryClient.setQueryData([queryKeys.navigate], `/profiles/${id}`)
+	}
+
 	return (
 		<Flex justify="center">
 			<Flex vertical style={{ margin: '2rem 0' }}>
-				<Flex justify="space-between" style={{ marginBottom: '2rem' }}>
+				<Flex justify="space-between" wrap style={{ marginBottom: '1rem' }}>
 					<Input.Search
 						allowClear
-						style={{ width: 360 }}
+						style={{ maxWidth: 320, marginBottom: '1rem' }}
 						onClear={handleSearch}
 						onSearch={handleSearch}
 						placeholder="Buscar por: nombre, apellido, usuario..."
@@ -122,12 +129,16 @@ export default function DirectoryView(): React.ReactNode {
 					<Typography.Title level={3}>Usuarios</Typography.Title>
 					<Table<User>
 						columns={columns}
+						className={classes.UserTable}
 						dataSource={data?.pages.flatMap((page) => page.users) || []}
 						pagination={false}
 						loading={isLoading}
 						rowKey={({ id }) => id}
-						scroll={{ x: 1080 }}
-						style={{ maxWidth: 1080, height: '100%', width: '100%' }}
+						scroll={{ x: 720 }}
+						onRow={({ id }) => ({
+							onClick: () => handleViewProfile(id),
+						})}
+						style={{ maxWidth: 1079, height: '100%', width: '100%' }}
 					/>
 				</InfiniteScroll>
 			</Flex>

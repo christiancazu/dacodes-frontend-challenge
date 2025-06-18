@@ -5,10 +5,12 @@ import './assets/main.scss'
 
 export default function App(): React.ReactNode {
 	return (
-		<ThemeProvider>
-			<QueryClientProviderComponent>
-				<RouterProviderComponent />
-			</QueryClientProviderComponent>
-		</ThemeProvider>
+		<>
+			<ThemeProvider>
+				<QueryClientProviderComponent>
+					<RouterProviderComponent />
+				</QueryClientProviderComponent>
+			</ThemeProvider>
+		</>
 	)
 }

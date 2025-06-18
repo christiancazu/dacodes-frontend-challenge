@@ -11,6 +11,8 @@ import MainLayout from './layouts/MainLayout'
 import AuthView from '@dacodes/auth/App'
 import DirectoryView from '@dacodes/directory/App'
 import GameView from '@dacodes/game/App'
+import ProfileView from '@dacodes/profile/App'
+
 import { type User, queryKeys } from '@dacodes/lib'
 import { useQuery } from '@tanstack/react-query'
 import queryClient from './config/query.client'
@@ -60,6 +62,10 @@ const router = createBrowserRouter([
 			{
 				path: 'game',
 				element: <GameView />,
+			},
+			{
+				path: 'profiles/:id',
+				element: <ProfileView />,
 			},
 		],
 	},

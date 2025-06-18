@@ -17,3 +17,16 @@ export interface User {
   company: Company;
   role: UserRole;
 }
+
+export interface UserLeaderboard {
+  id: number;
+  username: string;
+  firstName: string;
+  lastName: string;
+  image: string;
+}
+
+export interface UserScore {
+  user: UserLeaderboard;
+  time: number;
+}

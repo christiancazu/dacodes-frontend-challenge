@@ -1,6 +1,7 @@
 import { LeftCircleOutlined } from '@ant-design/icons'
 import { Button, Flex, Typography } from 'antd'
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useLeaderboards } from '../hooks/useLeaderboards'
 import FlipCard from './FlipCard'
 import FlipGameFinished from './FlipGameFinished'
 
@@ -58,6 +59,13 @@ export function FlipGameBoard({
 	modality,
 	handleRestartGame,
 }: Props): React.ReactElement {
+	const { leaderboardRegisterNewScore } = useLeaderboards()
+	const { mutate } = leaderboardRegisterNewScore()
+
+	const initialTime = useRef(new Date().getTime())
+
+	const [totalTime, setTotalTime] = useState(0)
+
 	const shuffledCards = useMemo(() => {
 		const isOdd = modality % 2 !== 0
 
@@ -177,38 +185,60 @@ export function FlipGameBoard({
 		}
 	}
 
+	useEffect(() => {
+		if (!gameOver) return
+
+		const time = new Date().getTime() - initialTime.current
+
+		setTotalTime(time)
+
+		mutate({ time })
+	}, [gameOver])
+
 	return (
-		<Flex vertical align="center">
-			<div
-				className="game-board"
-				style={
-					{
-						width: modality === 3 ? '60%' : modality === 4 ? '80%' : '100%',
-						['--modality' as any]: modality,
-					} as React.CSSProperties
-				}
+		<>
+			<Button
+				className="my-8"
+				style={{ zIndex: 1 }}
+				onClick={handleRestartGame}
 			>
-				{cardList.map((card, index) => (
-					<FlipCard
-						key={card.id}
-						id={index}
-						name={card.name}
-						flipped={card.flipped}
-						matched={card.matched}
-						clicked={flippedCards.length === 2 ? () => {} : handleClick}
-					/>
-				))}
-			</div>
-			<Typography.Title className="mt-8 text-center" level={3}>
-				intentos: {tryCount}
-			</Typography.Title>
-
-			{gameOver && <FlipGameFinished />}
-
-			<Button className="mt-8" onClick={handleRestartGame}>
 				<LeftCircleOutlined />
 				Volver
 			</Button>
-		</Flex>
+			<Flex vertical align="center">
+				<div
+					className="game-board"
+					style={
+						{
+							width: modality === 3 ? '60%' : modality === 4 ? '80%' : '100%',
+							['--modality' as any]: modality,
+						} as React.CSSProperties
+					}
+				>
+					{cardList.map((card, index) => (
+						<FlipCard
+							key={card.id}
+							id={index}
+							name={card.name}
+							flipped={card.flipped}
+							matched={card.matched}
+							clicked={flippedCards.length === 2 ? () => {} : handleClick}
+						/>
+					))}
+				</div>
+				<Typography.Title className="mt-8 text-center" level={3}>
+					intentos: {tryCount}
+				</Typography.Title>
+
+				{gameOver && (
+					<>
+						<FlipGameFinished />
+						<Typography.Title className="mt-8 text-center" level={4}>
+							Tiempo total: {totalTime.toLocaleString()} segundos
+						</Typography.Title>
+					</>
+				)}
+			</Flex>
+		</>
 	)
 }

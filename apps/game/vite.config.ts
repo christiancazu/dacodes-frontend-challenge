@@ -8,7 +8,12 @@ export default defineConfig(({ mode }) => {
     ...loadEnv(mode!, `${process.cwd()}/../../`),
   };
 
-  const { VITE_GAME_PORT, VITE_GAME_DOMAIN, VITE_ROOT_PORT } = process.env;
+  const {
+    VITE_GAME_PORT,
+    VITE_GAME_DOMAIN,
+    VITE_ROOT_PORT,
+    VITE_API_LEADERBOARD_URL,
+  } = process.env;
 
   return {
     plugins: [
@@ -45,6 +50,7 @@ export default defineConfig(({ mode }) => {
     },
     define: {
       VITE_GAME_DOMAIN: JSON.stringify(VITE_GAME_DOMAIN),
+      VITE_API_LEADERBOARD_URL: JSON.stringify(VITE_API_LEADERBOARD_URL),
     },
   };
 });

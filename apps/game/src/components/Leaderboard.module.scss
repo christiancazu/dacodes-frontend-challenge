@@ -1,0 +1,5 @@
+.UserTable :global(.ant-table) {
+  & table {
+    width: 100% !important;
+  }
+}

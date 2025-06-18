@@ -1,4 +1,5 @@
-import { User } from "./domain";
+import { User, UserScore } from "./domain";
+import { IRegisterScoreDto } from "./dto";
 
 export interface UserPagination {
   users: User[];
@@ -14,4 +15,10 @@ export interface PaginationDto {
 
 export interface UserRepository {
   getAll(dto: PaginationDto): Promise<UserPagination>;
+}
+
+export interface LeaderBoardRepository {
+  getTop10Leaderboard(): Promise<UserScore[]>;
+
+  registerNewScore(dto: IRegisterScoreDto): Promise<any>;
 }

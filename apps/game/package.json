@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@dacodes/lib": "workspace:*"
+    "@dacodes/lib": "workspace:*",
+    "socket.io-client": "^4.8.1"
   }
 }

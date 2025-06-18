@@ -32,8 +32,10 @@ export default function MainLayout(): React.ReactNode {
 					)}
 				</Flex>
 			</Header>
-			<Content>
-				<Outlet />
+			<Content className="grid place-items-center my-16">
+				<div className="max-w-[1080px] w-full">
+					<Outlet />
+				</div>
 			</Content>
 		</Layout>
 	)

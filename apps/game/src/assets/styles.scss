@@ -1,0 +1,100 @@
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(var(--modality), 1fr);
+  grid-template-rows: repeat(var(--modality), 1fr);
+  gap: 1rem;
+  place-items: center;
+
+  .card {
+    user-select: none;
+    height: 144px;
+    padding: 1rem;
+    box-sizing: border-box;
+    text-align: center;
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    position: relative;
+    display: grid;
+    place-items: center;
+
+    div {
+      width: 128px;
+      border: 1px solid red;
+      backface-visibility: hidden;
+      position: absolute;
+      top: 0;
+      height: 100%;
+      transition: 0.6s;
+      padding: .5rem;
+      border: 2px solid rgba(0, 0, 0, 0.1);
+      border-radius: 1rem;
+      cursor: pointer;
+    }
+
+    .back {
+      display: flex;
+      justify-content: center;
+
+      & img {
+        object-fit: contain;
+      }
+    }
+
+    .front {
+      transform: rotateY(180deg);
+      line-height: 110px;
+      text-emphasis: none;
+
+
+      img {
+        height: 100%;
+        object-fit: fill;
+      }
+    }
+
+    &.flipped {
+      transform: rotateY(180deg);
+
+    }
+
+    &.matched {
+      transform: rotateY(180deg);
+
+      .front {
+        box-shadow: 0 0 0 2px rgba(#000, 0.05) inset;
+        animation: selected 0.8s 0s ease 1;
+        animation-fill-mode: both;
+        opacity: 0.2;
+      }
+    }
+  }
+}
+
+@keyframes selected {
+  0% {
+    opacity: 0.2;
+  }
+
+  30% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 0.9;
+  }
+
+  70% {
+    opacity: 0.2;
+  }
+
+  100% {
+    opacity: 0.3;
+  }
+}
+
+.selection-images {
+  & img {
+    border-radius: 1rem;
+    cursor: pointer;
+  }
+}

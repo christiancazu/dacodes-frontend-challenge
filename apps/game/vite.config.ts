@@ -3,7 +3,12 @@ import react from "@vitejs/plugin-react";
 import { defineConfig, loadEnv } from "vite";
 
 export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, `${process.cwd()}/../../`);
+  process.env = {
+    ...process.env,
+    ...loadEnv(mode!, `${process.cwd()}/../../`),
+  };
+
+  const { VITE_GAME_PORT, VITE_GAME_DOMAIN, VITE_ROOT_PORT } = process.env;
 
   return {
     plugins: [
@@ -13,6 +18,9 @@ export default defineConfig(({ mode }) => {
         filename: "game.js",
         exposes: {
           "./App": "./src/App.tsx",
+        },
+        remotes: {
+          "@dacodes/root": `http://localhost:${VITE_ROOT_PORT}/assets/root.js`,
         },
         shared: [
           "@ant-design/icons",
@@ -30,10 +38,13 @@ export default defineConfig(({ mode }) => {
       cssCodeSplit: false,
     },
     server: {
-      port: +env.VITE_GAME_PORT || 7003,
+      port: +VITE_GAME_PORT! || 7003,
     },
     preview: {
-      port: +env.VITE_GAME_PORT || 7003,
+      port: +VITE_GAME_PORT! || 7003,
+    },
+    define: {
+      VITE_GAME_DOMAIN: JSON.stringify(VITE_GAME_DOMAIN),
     },
   };
 });

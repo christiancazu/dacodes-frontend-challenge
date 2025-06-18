@@ -5,8 +5,10 @@
   "type": "module",
   "scripts": {
     "build": "tsc -noEmit && vite build",
+    "start": "vite preview",
     "dev:root": "concurrently \"vite preview -l silent\" \"vite build --watch\"",
-    "dev:preview": "vite preview"
+    "dev:preview": "vite preview",
+    "preview:root": "vite preview"
   },
   "dependencies": {
     "@dacodes/lib": "workspace:*",

@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc -noEmit && vite build",
     "dev": "concurrently \"vite preview -l silent\" \"vite build --watch\"",
-    "preview": "vite preview"
+    "start": "vite preview"
   },
   "dependencies": {
     "@dacodes/lib": "workspace:*"

@@ -10,11 +10,11 @@ export default defineConfig(({ mode }) => {
 
   const {
     VITE_ROOT_PORT,
-    VITE_AUTH_PORT,
-    VITE_DIRECTORY_PORT,
-    VITE_GAME_PORT,
-    VITE_PROFILE_PORT,
     VITE_API_URL,
+    VITE_AUTH_DOMAIN,
+    VITE_DIRECTORY_DOMAIN,
+    VITE_GAME_DOMAIN,
+    VITE_PROFILE_DOMAIN,
   } = process.env;
 
   return {
@@ -23,17 +23,17 @@ export default defineConfig(({ mode }) => {
       federation({
         name: "@dacodes/root",
         filename: "root.js",
-        remotes: {
-          "@dacodes/auth": `http://localhost:${VITE_AUTH_PORT}/assets/auth.js`,
-          "@dacodes/directory": `http://localhost:${VITE_DIRECTORY_PORT}/assets/directory.js`,
-          "@dacodes/game": `http://localhost:${VITE_GAME_PORT}/assets/game.js`,
-          "@dacodes/profile": `http://localhost:${VITE_PROFILE_PORT}/assets/profile.js`,
-        },
         exposes: {
           "./AppProvider": "./src/components/AppProvider",
           "./queryClient": "./src/config/query.client",
           "./httpClient": "./src/config/http.client",
           "./useNotify": "./src/hooks/useNotify",
+        },
+        remotes: {
+          "@dacodes/auth": VITE_AUTH_DOMAIN!,
+          "@dacodes/directory": VITE_DIRECTORY_DOMAIN!,
+          "@dacodes/game": VITE_GAME_DOMAIN!,
+          "@dacodes/profile": VITE_PROFILE_DOMAIN!,
         },
         shared: [
           "axios",

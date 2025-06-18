@@ -3,7 +3,12 @@ import react from "@vitejs/plugin-react";
 import { defineConfig, loadEnv } from "vite";
 
 export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, `${process.cwd()}/../../`);
+  process.env = {
+    ...process.env,
+    ...loadEnv(mode!, `${process.cwd()}/../../`),
+  };
+
+  const { VITE_DIRECTORY_PORT, VITE_ROOT_DOMAIN } = process.env;
 
   return {
     plugins: [
@@ -15,7 +20,7 @@ export default defineConfig(({ mode }) => {
           "./App": "./src/App.tsx",
         },
         remotes: {
-          "@dacodes/root": `http://localhost:${env.VITE_ROOT_PORT}/assets/root.js`,
+          "@dacodes/root": VITE_ROOT_DOMAIN!,
         },
         shared: [
           "@ant-design/icons",
@@ -33,10 +38,10 @@ export default defineConfig(({ mode }) => {
       cssCodeSplit: false,
     },
     server: {
-      port: +env.VITE_DIRECTORY_PORT || 7002,
+      port: +VITE_DIRECTORY_PORT! || 7002,
     },
     preview: {
-      port: +env.VITE_DIRECTORY_PORT || 7002,
+      port: +VITE_DIRECTORY_PORT! || 7002,
     },
   };
 });

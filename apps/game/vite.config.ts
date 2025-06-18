@@ -11,8 +11,10 @@ export default defineConfig(({ mode }) => {
   const {
     VITE_GAME_PORT,
     VITE_GAME_DOMAIN,
-    VITE_ROOT_PORT,
+    VITE_GAME_DOMAIN_ROOT,
+    VITE_ROOT_DOMAIN,
     VITE_API_LEADERBOARD_URL,
+    WS_LEADERBOARD_PORT,
   } = process.env;
 
   return {
@@ -25,7 +27,7 @@ export default defineConfig(({ mode }) => {
           "./App": "./src/App.tsx",
         },
         remotes: {
-          "@dacodes/root": `http://localhost:${VITE_ROOT_PORT}/assets/root.js`,
+          "@dacodes/root": VITE_ROOT_DOMAIN!,
         },
         shared: [
           "@ant-design/icons",
@@ -51,6 +53,8 @@ export default defineConfig(({ mode }) => {
     define: {
       VITE_GAME_DOMAIN: JSON.stringify(VITE_GAME_DOMAIN),
       VITE_API_LEADERBOARD_URL: JSON.stringify(VITE_API_LEADERBOARD_URL),
+      WS_LEADERBOARD_PORT: JSON.stringify(WS_LEADERBOARD_PORT),
+      VITE_GAME_DOMAIN_ROOT: JSON.stringify(VITE_GAME_DOMAIN_ROOT),
     },
   };
 });

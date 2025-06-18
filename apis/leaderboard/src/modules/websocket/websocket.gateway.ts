@@ -9,7 +9,7 @@ import {
 import { Server, Socket } from "socket.io";
 import { WsGuard } from "./guards/websockets.guards";
 
-@WebSocketGateway({
+@WebSocketGateway(+process.env.WS_LEADERBOARD_PORT!, {
   cors: {
     origin: "*",
   },
@@ -21,13 +21,9 @@ export class WebsocketGateway
   @WebSocketServer()
   server: Server;
 
-  handleConnection(client: Socket) {
-    console.log("Client connected:", client.id);
-  }
+  handleConnection(client: Socket) {}
 
-  handleDisconnect(client: Socket) {
-    console.log("Client disconnected:", client.id);
-  }
+  handleDisconnect(client: Socket) {}
 
   emitUpdate(leaderboardUsers: UserScore[]) {
     this.server.emit("leaderboard:update", leaderboardUsers);

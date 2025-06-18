@@ -14,7 +14,7 @@ type Props = {
 	handGameGridModality: (modality: GameGridModality) => void
 }
 
-const VITE_GAME_DOMAIN = import.meta.env.VITE_GAME_DOMAIN || ''
+const VITE_GAME_DOMAIN_ROOT = import.meta.env.VITE_GAME_DOMAIN_ROOT || ''
 
 export default function FlipGameSelection({
 	handGameGridModality,
@@ -43,21 +43,21 @@ export default function FlipGameSelection({
 					<img
 						height={180}
 						width={180}
-						src={`${VITE_GAME_DOMAIN}${game3x3}`}
+						src={`${VITE_GAME_DOMAIN_ROOT}${game3x3}`}
 						alt="3x3"
 						onClick={() => handGameGridModality(3)}
 					/>
 					<img
 						height={180}
 						width={180}
-						src={`${VITE_GAME_DOMAIN}${game4x4}`}
+						src={`${VITE_GAME_DOMAIN_ROOT}${game4x4}`}
 						alt="4x4"
 						onClick={() => handGameGridModality(4)}
 					/>
 					<img
 						height={180}
 						width={180}
-						src={`${VITE_GAME_DOMAIN}${game5x5}`}
+						src={`${VITE_GAME_DOMAIN_ROOT}${game5x5}`}
 						alt="5x5"
 						onClick={() => handGameGridModality(5)}
 					/>

@@ -31,7 +31,6 @@ export class LeaderboardService {
 
     let userLeaderboard = leaderboardUsers?.find((u) => u.user.id === user.id);
 
-    console.warn(userLeaderboard, dto);
     if (userLeaderboard) {
       if (dto.time < userLeaderboard.time) {
         userLeaderboard.time = dto.time;

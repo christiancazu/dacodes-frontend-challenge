@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,Symbol.toStringTag,{value:"Module"});var r=(e=>(e.admin="admin",e.moderator="moderator",e.user="user",e))(r||{});const a={navigate:"navigate",auth:"auth",users:"users",leaderboard:"leaderboard"};exports.UserRole=r;exports.queryKeys=a;

@@ -3,7 +3,7 @@ import axios from "axios";
 import debounce from "debounce";
 
 const httpClient = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
+  baseURL: import.meta.env.VITE_API_DUMMY_URL,
 });
 
 const messageError = debounce((msg) => message.error(msg, 5), 500);

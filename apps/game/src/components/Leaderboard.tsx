@@ -8,7 +8,7 @@ import { useLeaderboards } from '../hooks/useLeaderboards'
 import { leaderboardService } from '../services/leaderboard.service'
 import classes from './Leaderboard.module.scss'
 
-const ws = import.meta.env.WS_LEADERBOARD_PORT
+const VITE_WS_LEADERBOARD_URL = import.meta.env.VITE_WS_LEADERBOARD_URL
 
 const columns: TableColumnsType<UserScore> = [
 	{
@@ -54,7 +54,7 @@ export default function Leaderboard(): React.ReactNode {
 	const notify = useNotify()
 
 	useEffect(() => {
-		socketRef.current = io(ws)
+		socketRef.current = io(VITE_WS_LEADERBOARD_URL)
 
 		socketRef.current.on('connect', () => {})
 

@@ -9,12 +9,13 @@ export default defineConfig(({ mode }) => {
   };
 
   const {
+    VITE_ROOT_DOMAIN,
     VITE_ROOT_PORT,
-    VITE_API_URL,
-    VITE_AUTH_DOMAIN,
-    VITE_DIRECTORY_DOMAIN,
-    VITE_GAME_DOMAIN,
-    VITE_PROFILE_DOMAIN,
+    VITE_API_DUMMY_URL,
+    VITE_AUTH_DOMAIN_ENTRY,
+    VITE_DIRECTORY_DOMAIN_ENTRY,
+    VITE_GAME_DOMAIN_ENTRY,
+    VITE_PROFILE_DOMAIN_ENTRY,
   } = process.env;
 
   return {
@@ -30,10 +31,10 @@ export default defineConfig(({ mode }) => {
           "./useNotify": "./src/hooks/useNotify",
         },
         remotes: {
-          "@dacodes/auth": VITE_AUTH_DOMAIN!,
-          "@dacodes/directory": VITE_DIRECTORY_DOMAIN!,
-          "@dacodes/game": VITE_GAME_DOMAIN!,
-          "@dacodes/profile": VITE_PROFILE_DOMAIN!,
+          "@dacodes/auth": VITE_AUTH_DOMAIN_ENTRY!,
+          "@dacodes/directory": VITE_DIRECTORY_DOMAIN_ENTRY!,
+          "@dacodes/game": VITE_GAME_DOMAIN_ENTRY!,
+          "@dacodes/profile": VITE_PROFILE_DOMAIN_ENTRY!,
         },
         shared: [
           "axios",
@@ -56,9 +57,10 @@ export default defineConfig(({ mode }) => {
     },
     preview: {
       port: +VITE_ROOT_PORT! || 7000,
+      allowedHosts: [VITE_ROOT_DOMAIN!],
     },
     define: {
-      VITE_API_URL: JSON.stringify(VITE_API_URL),
+      VITE_API_DUMMY_URL: JSON.stringify(VITE_API_DUMMY_URL),
     },
   };
 });

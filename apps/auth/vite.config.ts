@@ -8,7 +8,8 @@ export default defineConfig(({ mode }) => {
     ...loadEnv(mode!, `${process.cwd()}/../../`),
   };
 
-  const { VITE_AUTH_PORT, VITE_ROOT_DOMAIN } = process.env;
+  const { VITE_AUTH_DOMAIN, VITE_AUTH_PORT, VITE_ROOT_DOMAIN_ENTRY } =
+    process.env;
 
   return {
     plugins: [
@@ -20,7 +21,7 @@ export default defineConfig(({ mode }) => {
           "./App": "./src/App",
         },
         remotes: {
-          "@dacodes/root": VITE_ROOT_DOMAIN!,
+          "@dacodes/root": VITE_ROOT_DOMAIN_ENTRY!,
         },
         shared: [
           "@ant-design/icons",
@@ -42,6 +43,7 @@ export default defineConfig(({ mode }) => {
     },
     preview: {
       port: +VITE_AUTH_PORT! || 7001,
+      allowedHosts: [VITE_AUTH_DOMAIN!],
     },
   };
 });
